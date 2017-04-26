@@ -1,11 +1,11 @@
 @startuml
 
 package HoloLens as HL{
-
+    [Camera]
 }
 
 package Ninja{
-    
+
 }
 
 
