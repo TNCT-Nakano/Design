@@ -1,0 +1,25 @@
+@startuml
+title 大まかなクリティカルパス
+left to right direction
+'Teru'
+(インターフェイス設計)as design_interface
+(UML追記) as write_uml
+
+(モデル作成)as create_model
+
+(Ninjaの通信擁立) as link_ninja
+(Ninjaのセンサー) as sensor_ninja
+link_ninja --> sensor_ninja
+
+(外装設計) as design_exterior
+
+(UHの通信擁立) as link_uh
+(UHのフィードバック) as feedback_uh
+(UHのセンサー) as sensor_uh
+link_uh-->feedback_uh
+link_uh-->sensor_uh
+
+
+
+
+@enduml
