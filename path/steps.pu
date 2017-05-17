@@ -15,13 +15,18 @@ package 全体 as uml{
     design_interface--> design_detail
 }
 
-
+frame 周辺機器{
 note left of Ninja :伊藤，内山が担当
 package Ninja {
     '5月'
     (Ninjaの通信擁立) as link_ninja
+    note left of link_ninja :意味のあるデータを\n無理に送る必要はない
     (Ninjaのセンサー) as sensor_ninja
-    link_ninja --> sensor_ninja
+    link_ninja -.> sensor_ninja
+    (Ninjaの統合テスト)as joint_ninja
+    note left of joint_ninja :実際に意味のある\nデータを送る
+    link_ninja -->joint_ninja
+    sensor_ninja --> joint_ninja
     (外装設計) as design_exterior
 }
 
@@ -29,20 +34,44 @@ note left of uh :伊坪が担当
 package UnlimitedHand as uh {
     '5月'
     (UHの通信擁立) as link_uh
+    note left of link_uh:意味のあるデータを\n無理に送る必要はない
     (UHのフィードバック) as feedback_uh
+    note left of feedback_uh:のちのち，パラメータを調整するので\nマジックナンバーを使わないこと．
     (UHのセンサー) as sensor_uh
-    link_uh-->feedback_uh
-    link_uh-->sensor_uh
+    (UHでの統合テスト) as joint_uh
+    note right of joint_uh:実際に意味のある\nデータを送る
+    (UHの感度調整) as adjust_uh
+    link_uh-.>feedback_uh
+    link_uh-.>sensor_uh
+    link_uh-->joint_uh
+    feedback_uh --> joint_uh
+    sensor_uh --> joint_uh
+    joint_uh -->adjust_uh
 }
 
+() 通信擁立 as link_if
+link_ninja -> link_if
+link_uh -> link_if
+
+() 統合テスト as joint_if
+joint_ninja ->joint_if
+joint_uh ->joint_if
+
+}
 note left of unity :砂田が担当
 package unity{
     (モデル作成)as create_model
+    (周辺機器との通信擁立) as link_unity
     (周辺機器との統合) as joint_unity
-
+    (調整)as debug_unity
     design_interface->joint_unity
-    link_ninja->joint_unity
-    link_uh->joint_unity
+    link_if->link_unity
+    create_model --> joint_unity
+    link_unity -->joint_unity
+    joint_if-->joint_unity
+    joint_unity --> debug_unity
+
+
 
 }
 
