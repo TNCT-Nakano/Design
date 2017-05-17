@@ -1,15 +1,46 @@
 @startuml
 
-package HoloLens as HL{
-    [Camera]
+title 認識共有(相関図)
+
+(BLE)
+actor Player
+[バット] as Bat
+Player -d->Bat:振る
+
+frame HoloLens {
+    [Unity] --> [WinRT]:use
+    [Unity] -->[Model]:use
 }
 
-package Ninja{
+WinRT .d.> BLE:接続
+Player -d-> HoloLens :装着(頭)
 
+frame UnlimitedHand{
+    [Main] as UH_Main
+    note left of UH_Main :作るもの
+    [BLE-API] as UH_BLE
+    [Sensor]as UH_Sensor
+    UH_Main --> UH_BLE:use
+    UH_Main --> UH_Sensor:use
 }
 
+Player <-d-> UnlimitedHand :装着(腕)
+BLE <.u. UH_BLE:接続
 
-package UnlimitedHand as UH{
 
+frame BlueNinja{
+    [Main]as BN_Main
+    note left of BN_Main :作るもの
+    [BLE-API] as BSP_API
+    [Sensor] as BN_Sensor
+    BN_Main -->BSP_API:use
+    BN_Main -->BN_Sensor:use
 }
+
+BLE <.u. BSP_API:接続
+Bat -> BlueNinja :装着
+
+
+
+
 @enduml

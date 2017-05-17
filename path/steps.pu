@@ -1,23 +1,50 @@
 @startuml
 title 大まかなクリティカルパス
 left to right direction
+
+note "とりあえずユースケース図で代用した" as memo
+
 'Teru'
-(インターフェイス設計)as design_interface
-(UML追記) as write_uml
+note left of uml:川上が担当
+package 全体 as uml{
+    '5月'
+    (クリティカルパス作成)as critical_path
+    (インターフェイス設計)as design_interface
+    (UML追記) as design_detail
+    critical_path-->design_interface
+    design_interface--> design_detail
+}
 
-(モデル作成)as create_model
 
-(Ninjaの通信擁立) as link_ninja
-(Ninjaのセンサー) as sensor_ninja
-link_ninja --> sensor_ninja
+note left of Ninja :伊藤，内山が担当
+package Ninja {
+    '5月'
+    (Ninjaの通信擁立) as link_ninja
+    (Ninjaのセンサー) as sensor_ninja
+    link_ninja --> sensor_ninja
+    (外装設計) as design_exterior
+}
 
-(外装設計) as design_exterior
+note left of uh :伊坪が担当
+package UnlimitedHand as uh {
+    '5月'
+    (UHの通信擁立) as link_uh
+    (UHのフィードバック) as feedback_uh
+    (UHのセンサー) as sensor_uh
+    link_uh-->feedback_uh
+    link_uh-->sensor_uh
+}
 
-(UHの通信擁立) as link_uh
-(UHのフィードバック) as feedback_uh
-(UHのセンサー) as sensor_uh
-link_uh-->feedback_uh
-link_uh-->sensor_uh
+note left of unity :砂田が担当
+package unity{
+    (モデル作成)as create_model
+    (周辺機器との統合) as joint_unity
+
+    design_interface->joint_unity
+    link_ninja->joint_unity
+    link_uh->joint_unity
+
+}
 
 
 
