@@ -57,19 +57,10 @@ link_uh -> link_if
 joint_ninja ->joint_if
 joint_uh ->joint_if
 
-}
-note left of unity :砂田が担当
-package unity{
-    (モデル作成)as create_model
-    (周辺機器との通信擁立) as link_unity
-    (周辺機器との統合) as joint_unity
-    (調整)as debug_unity
-    design_interface->joint_unity
-    link_if->link_unity
-    create_model --> joint_unity
-    link_unity -->joint_unity
-    joint_if-->joint_unity
-    joint_unity --> debug_unity
+} note left of unity :砂田が担当 package unity{ (モデル作成)as create_model (周辺機器との通信擁立)
+as link_unity (周辺機器との統合) as joint_unity (調整)as debug_unity
+design_interface->joint_unity link_if->link_unity create_model --> joint_unity
+link_unity -->joint_unity joint_if-->joint_unity joint_unity --> debug_unity
 
 
 

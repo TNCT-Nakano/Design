@@ -1,0 +1,25 @@
+@startuml
+
+
+
+
+
+(開始) as begin
+(選択画面) as selector
+(野球画面) as baseball
+(剣道画面) as kendo
+(ラケット) as racket
+(設定画面) as configuration
+(終了) as finish
+
+begin --->selector
+
+selector <--> baseball
+selector <--> kendo
+selector <--> racket
+selector <--> configuration
+
+selector --->finish
+
+
+@enduml

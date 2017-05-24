@@ -1,0 +1,51 @@
+@startuml
+
+title 状態遷移図
+'列挙'
+partition User {
+
+(*)-->UnlimitedHandの装着
+-->Hololensの装着
+-->Gameの起動
+partition Game {
+
+partition Initialize {
+    -->UnlmitedHandとの通信擁立
+    -->BlueNinjaとの通信擁立
+}
+-->選択画面へ画面遷移
+note right: ここにプレイできるスポーツを\n入れることで拡張性を実現する．
+if 機能の選択 then
+    -->[野球]野球へ画面遷移
+    -->素振り
+    if 一定の回数振る then
+        -->[no]素振り
+    else
+    -->[yes]スコアの表示
+    end if
+    -->選択画面へ画面遷移
+else
+    -->[設定]設定へ画面遷移
+    -->ユーザーが設定を変更する
+    if 保存の有無 then
+        -->[yes]設定の保存
+        -->選択画面へ画面遷移
+    else
+        -->選択画面へ画面遷移
+    end if
+else
+    partition deinitailize
+        -->[終了]BlueNinjaの開放
+        -->UnlimitedHandの開放
+    end partition
+end if
+
+
+
+}
+-->Hololensの取り外し
+-->UnlimitedHandの取り外し
+-->(*)
+}
+
+@enduml
