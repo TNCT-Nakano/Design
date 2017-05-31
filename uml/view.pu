@@ -5,6 +5,8 @@
 
 
 (開始) as begin
+(補正) as cabiration
+
 (選択画面) as selector
 (野球画面) as baseball
 (剣道画面) as kendo
@@ -12,8 +14,8 @@
 (設定画面) as configuration
 (終了) as finish
 
-begin --->selector
-
+begin --->cabiration
+cabiration --> selector
 selector <--> baseball
 selector <--> kendo
 selector <--> racket
