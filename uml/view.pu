@@ -6,6 +6,7 @@
 
 (開始) as begin
 (補正) as cabiration
+note right of cabiration:これは再利用する
 
 (選択画面) as selector
 (野球画面) as baseball
