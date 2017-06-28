@@ -1,0 +1,18 @@
+@startuml
+
+class BlueComm{
+-acc:vector3;//加速度
+-gyro:vector3;//角加速度
+-geo:vector3;//磁気情報[rad]
+-batt:float;//充電情報[0~1]
++Period:const float;//取得周期
+---
++Update():
+---
++Acceleration:[Readonly]vector3
++Gyro:[Readonly]vector3
++Geomagnetism:[Readonly]vector3
++Battery:[Readonly]float
+}
+
+@enduml
